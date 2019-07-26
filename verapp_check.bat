@@ -1,5 +1,10 @@
 @echo off
 
+break>verapp.log
+
+date /T >> verapp.log
+time /T >> verapp.log
+
 :: all_but_first
 set ALL_BUT_FIRST=""
 
