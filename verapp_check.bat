@@ -2,12 +2,15 @@
 
 :: all_but_first
 set ALL_BUT_FIRST=""
-echo all: %*
-for /f "tokens=1,* delims= " %%a in ("%*") do set ALL_BUT_FIRST=%%b
-echo all_but_first: %ALL_BUT_FIRST%
+
 
 :: help 
-if %1==-h  (echo usage: verapp_check -h                                help
+if [%1]==[]  GOTO MyLabel
+for /f "tokens=1,* delims= " %%a in ("%*") do set ALL_BUT_FIRST=%%b
+
+if %1==-h  (
+:MyLabel
+            echo usage: verapp_check -h                                help
             echo        verapp_check -file         "path1 path2 ..."   checks For files
             echo        verapp_check -folder                           checks For current folder
             echo        verapp_check -folderSub                        checks For current folder including subfolders
@@ -43,7 +46,7 @@ call :parse "%ALL_BUT_FIRST%"
 
 )
 
-pause
+
 goto :eof
 
 :: function to parse arguments by delimiter " ".
